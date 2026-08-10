@@ -1,0 +1,197 @@
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+.generatorForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formTopRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.formTopRow .field {
+  gap: 5px;
+}
+
+.formTopRow .field span {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.formTopRow .field input,
+.formTopRow .field select {
+  height: 38px;
+  padding: 0 10px;
+
+  background: #0d182e;
+  color: var(--text-primary);
+
+  border: 1px solid #31415f;
+  border-radius: 9px;
+
+  font-size: 0.9rem;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.formTopRow .field input:hover:not(:disabled),
+.formTopRow .field select:hover:not(:disabled) {
+  border-color: #4b5f86;
+}
+
+.formTopRow .field input:focus,
+.formTopRow .field select:focus {
+  outline: none;
+  border-color: #64748b;
+  background: #101c33;
+}
+
+.formTopRow .field input:disabled,
+.formTopRow .field select:disabled {
+  opacity: 0.55;
+}
+
+.field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field span {
+  color: #dbe4f0;
+  font-size: 0.88rem;
+}
+
+.field input:not([type="checkbox"]):not([type="range"]),
+.field select {
+  width: 100%;
+  min-width: 0;
+
+  padding: 10px 12px;
+
+  background: var(--panel-background-dark);
+  color: var(--text-primary);
+
+  border: 1px solid #31415f;
+  border-radius: 9px;
+}
+
+.numberLabel {
+  text-align: left;
+}
+
+.sliderHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sliderHeader > span {
+  min-width: 0;
+}
+
+.smallButton {
+  flex-shrink: 0;
+
+  padding: 5px 8px;
+
+  background: #1e293b;
+  color: var(--text-primary);
+
+  border: 1px solid #334155;
+  border-radius: 7px;
+
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.smallButton:hover:not(:disabled) {
+  background: #334155;
+}
+
+input[type="range"] {
+  width: 100%;
+  padding: 0;
+}
+
+.targetRegionRange {
+  margin-top: 6px;
+}
+
+.checkboxList {
+  display: grid;
+  gap: 8px;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #dbe4f0;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.checkboxField input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.formActions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.primaryButton,
+.secondaryButton {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.primaryButton {
+  color: #ffffff;
+  background: #3b82f6;
+  border: 0;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.secondaryButton {
+  color: var(--text-primary);
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.secondaryButton:hover:not(:disabled) {
+  background: #334155;
+}
+
+.range-slider .range-slider__thumb {
+  width: 20px !important;
+  height: 20px !important;
+}

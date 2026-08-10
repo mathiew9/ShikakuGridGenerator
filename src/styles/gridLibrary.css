@@ -1,0 +1,349 @@
+/* =========================================================
+   BIBLIOTHÈQUE DE GRILLES
+   ========================================================= */
+
+.gridLibraryPanel {
+  padding: 14px;
+
+  border-top: 2px solid gray;
+}
+
+.gridLibraryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+}
+
+.gridLibraryHeader h2 {
+  margin: 0 0 3px;
+
+  font-size: 0.95rem;
+}
+
+.gridLibraryHeader span {
+  color: var(--text-secondary);
+
+  font-size: 0.72rem;
+}
+
+/* Fichier */
+
+.gridLibraryFile {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 10px;
+
+  background: #0d182e;
+
+  border: 1px solid #2a3a5a;
+  border-radius: 8px;
+}
+
+.gridLibraryFileInfo {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gridLibraryFileActions {
+  flex-shrink: 0;
+}
+
+.gridLibraryLabel {
+  color: var(--text-muted);
+
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.gridLibraryIconButton {
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #172033;
+  color: var(--text-primary);
+
+  border: 1px solid #334155;
+  border-radius: 8px;
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+}
+
+.gridLibraryIconButton:hover {
+  background: #1e293b;
+}
+
+.gridLibrarySuccess {
+  margin-top: 10px;
+  padding: 8px 10px;
+
+  background: #102b22;
+  color: #d7f7e8;
+
+  border: 1px solid #285f4c;
+  border-radius: 8px;
+
+  font-size: 0.72rem;
+}
+
+.gridLibraryFile strong {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--text-primary);
+
+  font-size: 0.78rem;
+}
+
+.gridLibraryFile .gridLibraryNoFile {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Statistiques */
+
+.gridLibraryStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1px;
+
+  margin-top: 10px;
+
+  overflow: hidden;
+
+  background: #263550;
+
+  border: 1px solid #263550;
+  border-radius: 8px;
+}
+
+.gridLibraryStats > div {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+  padding: 8px 9px;
+
+  background: #0d182e;
+}
+
+.gridLibraryStats span {
+  color: var(--text-secondary);
+
+  font-size: 0.7rem;
+}
+
+.gridLibraryStats strong {
+  color: var(--text-primary);
+
+  font-size: 0.76rem;
+}
+
+/* Aucun fichier */
+
+.gridLibraryEmptyInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 10px;
+  padding: 9px 10px;
+
+  background: #0d182e;
+
+  border: 1px solid #2a3a5a;
+  border-radius: 8px;
+
+  font-size: 0.72rem;
+}
+
+.gridLibraryEmptyInfo span {
+  color: var(--text-secondary);
+}
+
+.gridLibraryEmptyInfo strong {
+  color: var(--text-primary);
+}
+
+/* Messages */
+
+.gridLibraryNotice,
+.gridLibraryDirty {
+  margin-top: 10px;
+  padding: 8px 10px;
+
+  border-radius: 8px;
+
+  font-size: 0.72rem;
+}
+
+.gridLibraryNotice {
+  color: var(--text-secondary);
+
+  background: #111c34;
+
+  border: 1px solid #334155;
+}
+
+.gridLibraryDirty {
+  color: #f8fafc;
+
+  background: #302514;
+
+  border: 1px dashed #8a6428;
+}
+
+/* Input caché */
+
+.gridLibraryFileInput {
+  display: none;
+}
+
+/* Boutons */
+
+.gridLibraryActions {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.gridLibraryFullButton {
+  grid-column: 1 / -1;
+}
+
+.gridLibraryPrimaryButton,
+.gridLibrarySecondaryButton,
+.gridLibraryFullButton {
+  min-width: 0;
+
+  padding: 8px 10px;
+
+  border-radius: 8px;
+
+  font-size: 0.75rem;
+
+  cursor: pointer;
+}
+
+.gridLibraryPrimaryButton {
+  background: #3b82f6;
+  color: #ffffff;
+
+  border: 1px solid #3b82f6;
+}
+
+.gridLibraryPrimaryButton:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.gridLibrarySecondaryButton,
+.gridLibraryFullButton:not(.gridLibraryPrimaryButton) {
+  background: #172033;
+  color: var(--text-primary);
+
+  border: 1px solid #334155;
+}
+
+.gridLibrarySecondaryButton:hover:not(:disabled),
+.gridLibraryFullButton:not(.gridLibraryPrimaryButton):hover:not(:disabled) {
+  background: #1e293b;
+}
+
+.gridLibraryPrimaryButton:disabled,
+.gridLibrarySecondaryButton:disabled,
+.gridLibraryFullButton:disabled {
+  opacity: 0.45;
+
+  cursor: default;
+}
+
+/* =========================================================
+   DIALOG
+   ========================================================= */
+
+.gridLibraryDialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(2, 6, 23, 0.72);
+}
+
+.gridLibraryDialog {
+  width: min(440px, 100%);
+
+  padding: 20px;
+
+  background: #111c34;
+
+  border: 1px solid #334155;
+  border-radius: 14px;
+
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.gridLibraryDialog h3 {
+  margin: 0 0 10px;
+
+  color: var(--text-primary);
+
+  font-size: 1rem;
+}
+
+.gridLibraryDialog p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 0.85rem;
+  line-height: 1.55;
+
+  white-space: pre-line;
+}
+
+.gridLibraryDialogActions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 20px;
+}

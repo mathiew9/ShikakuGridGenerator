@@ -1,0 +1,54 @@
+/* =========================================================
+   APERÇU D’UNE GRILLE
+   ========================================================= */
+
+.gridPreviewWrapper {
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.gridPreview {
+  width: 100%;
+
+  display: grid;
+  gap: 0;
+
+  padding: 6px;
+
+  background: #1e293b;
+  border-radius: 8px;
+
+  aspect-ratio: 1;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: var(--panel-background-dark);
+  color: var(--text-primary);
+
+  font-weight: 600;
+  aspect-ratio: 1;
+}
+
+.gridPreviewStats {
+  margin-top: 8px;
+
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}

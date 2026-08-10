@@ -1,0 +1,18 @@
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  color: #f5f7fb;
+  background: #0f172a;
+
+  --header-height: 82px;
+  --sidebar-width: 310px;
+  --layout-gap: 14px;
+
+  --background: #0f172a;
+  --panel-background: #111c34;
+  --panel-background-dark: #0b1327;
+  --panel-border: #24324f;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+}
