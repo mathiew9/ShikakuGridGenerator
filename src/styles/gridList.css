@@ -170,6 +170,10 @@
   gap: 16px;
 }
 
+.generatorAppLogsExpanded .gridList {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 /*
  * Aucun changement particulier n'est nécessaire lorsque
  * les logs s'ouvrent :

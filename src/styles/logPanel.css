@@ -79,7 +79,7 @@
 }
 
 .logPanelExpanded {
-  height: calc(100vh - var(--layout-gap));
+  height: calc(100vh - (var(--layout-gap) * 2));
 }
 
 /* =========================================================
