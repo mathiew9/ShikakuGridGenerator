@@ -12,6 +12,8 @@ import {
   FaExclamation,
   FaCheck,
   FaX,
+  FaCheckDouble,
+  FaWandMagicSparkles,
 } from "react-icons/fa6";
 import { PiWarningDiamondFill } from "react-icons/pi";
 
@@ -204,7 +206,8 @@ export function GridList({
             onClick={handleSelectAll}
             disabled={grids.length === 0 || allGridsSelected}
           >
-            Tout sélectionner
+            <FaCheckDouble />
+            Sélectionner tout
           </button>
 
           <button
@@ -213,25 +216,27 @@ export function GridList({
             onClick={handleDeselectAll}
             disabled={selectedCount === 0}
           >
-            Tout désélectionner
+            Désélectionner
           </button>
 
           <button
             type="button"
-            className="gridActionButton"
-            onClick={handleDeleteUnselected}
-            disabled={unselectedCount === 0}
-          >
-            Supprimer non sélectionnées ({unselectedCount})
-          </button>
-
-          <button
-            type="button"
-            className="gridActionButton"
+            className="gridActionButton gridActionButtonPrimary"
             onClick={handleMakeUnique}
             disabled={selectedCount === 0}
           >
-            Rendre unique
+            <FaWandMagicSparkles />
+            Rendre unique ({selectedCount})
+          </button>
+
+          <button
+            type="button"
+            className="gridActionButton gridActionButtonDanger"
+            onClick={handleDeleteUnselected}
+            disabled={unselectedCount === 0}
+          >
+            <FaTrashCan />
+            Garder la sélection ({unselectedCount} supprimées)
           </button>
         </div>
       </div>

@@ -2,6 +2,7 @@ import type {
   RectangleGrid,
   RectangleGridStats,
   UniformityResult,
+  RectangleRegion,
 } from "../types/rectangleTypes";
 
 const MIN_REGIONS_FOR_DIVERSITY_CHECK = 6;
@@ -60,6 +61,124 @@ function calculateStats(
   };
 }
 
+function isVerticalDomino(region: RectangleRegion): boolean {
+  return region.width === 1 && region.height === 2;
+}
+
+function isHorizontalDomino(region: RectangleRegion): boolean {
+  return region.width === 2 && region.height === 1;
+}
+
+function getMaximumHorizontalRunOfVerticalDominoes(
+  grid: RectangleGrid,
+): number {
+  const dominoes = grid.regions
+    .filter(isVerticalDomino)
+    .sort((first, second) => {
+      if (first.row !== second.row) {
+        return first.row - second.row;
+      }
+
+      return first.col - second.col;
+    });
+
+  let maximumRun = 0;
+
+  for (const startDomino of dominoes) {
+    let currentRun = 1;
+    let currentCol = startDomino.col;
+
+    while (true) {
+      const nextDomino = dominoes.find(
+        (region) =>
+          region.row === startDomino.row && region.col === currentCol + 1,
+      );
+
+      if (!nextDomino) {
+        break;
+      }
+
+      currentRun++;
+      currentCol = nextDomino.col;
+    }
+
+    maximumRun = Math.max(maximumRun, currentRun);
+  }
+
+  return maximumRun;
+}
+
+function getMaximumVerticalRunOfHorizontalDominoes(
+  grid: RectangleGrid,
+): number {
+  const dominoes = grid.regions
+    .filter(isHorizontalDomino)
+    .sort((first, second) => {
+      if (first.col !== second.col) {
+        return first.col - second.col;
+      }
+
+      return first.row - second.row;
+    });
+
+  let maximumRun = 0;
+
+  for (const startDomino of dominoes) {
+    let currentRun = 1;
+    let currentRow = startDomino.row;
+
+    while (true) {
+      const nextDomino = dominoes.find(
+        (region) =>
+          region.col === startDomino.col && region.row === currentRow + 1,
+      );
+
+      if (!nextDomino) {
+        break;
+      }
+
+      currentRun++;
+      currentRow = nextDomino.row;
+    }
+
+    maximumRun = Math.max(maximumRun, currentRun);
+  }
+
+  return maximumRun;
+}
+
+function validateFiveByFiveDominoRepetition(
+  grid: RectangleGrid,
+): string | null {
+  if (grid.rows !== 5 || grid.cols !== 5) {
+    return null;
+  }
+
+  const maximumAllowedRun = 3;
+
+  const verticalDominoRun = getMaximumHorizontalRunOfVerticalDominoes(grid);
+
+  if (verticalDominoRun > maximumAllowedRun) {
+    return (
+      `${verticalDominoRun} rectangles 1×2 ` +
+      `consécutifs détectés ` +
+      `(maximum autorisé : ${maximumAllowedRun})`
+    );
+  }
+
+  const horizontalDominoRun = getMaximumVerticalRunOfHorizontalDominoes(grid);
+
+  if (horizontalDominoRun > maximumAllowedRun) {
+    return (
+      `${horizontalDominoRun} rectangles 2×1 ` +
+      `consécutifs détectés ` +
+      `(maximum autorisé : ${maximumAllowedRun})`
+    );
+  }
+
+  return null;
+}
+
 export function analyzeRectangleGridUniformity(
   grid: RectangleGrid,
 ): UniformityResult {
@@ -68,6 +187,16 @@ export function analyzeRectangleGridUniformity(
   const areas = regions.map((region) => region.width * region.height);
 
   const stats = calculateStats(grid, areas);
+
+  const dominoRepetitionReason = validateFiveByFiveDominoRepetition(grid);
+
+  if (dominoRepetitionReason) {
+    return {
+      accepted: false,
+      reason: dominoRepetitionReason,
+      stats,
+    };
+  }
 
   if (regions.length === 0) {
     return {
