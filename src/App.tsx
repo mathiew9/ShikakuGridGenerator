@@ -6,6 +6,7 @@ import { GridList } from "./components/GridList";
 import { GridLibraryPanel } from "./components/GridLibraryPanel";
 import { LogPanel } from "./components/LogPanel";
 import { useRectangleGenerator } from "./hooks/useRectangleGenerator";
+
 import type { GeneratorSettings, RectangleGrid } from "./types/rectangleTypes";
 
 const DEFAULT_SETTINGS: GeneratorSettings = {
@@ -23,6 +24,8 @@ const DEFAULT_SETTINGS: GeneratorSettings = {
 
 function App() {
   const [selectedGridIds, setSelectedGridIds] = useState<string[]>([]);
+
+  const [areLogsCollapsed, setAreLogsCollapsed] = useState(true);
 
   const {
     generatedGrids,
@@ -57,17 +60,33 @@ function App() {
   };
 
   return (
-    <main className="generatorApp">
+    <main
+      className={`generatorApp ${
+        areLogsCollapsed
+          ? "generatorAppLogsCollapsed"
+          : "generatorAppLogsExpanded"
+      }`}
+    >
       <header className="appHeader">
-        <div>
-          <h1>Rectangle Generator</h1>
+        <div className="appHeaderContent">
+          <div>
+            <h1>Rectangle Generator</h1>
 
-          <p>Génération locale de grilles avec validation et aperçu.</p>
+            <p>Génération locale de grilles avec validation et aperçu.</p>
+          </div>
+
+          <div className="headerStat">
+            <strong>{generatedGrids.length}</strong> grilles
+          </div>
         </div>
 
-        <div className="headerStat">
-          <strong>{generatedGrids.length}</strong> grilles
-        </div>
+        <LogPanel
+          logs={logs}
+          isCollapsed={areLogsCollapsed}
+          onToggleCollapse={() =>
+            setAreLogsCollapsed((currentValue) => !currentValue)
+          }
+        />
       </header>
 
       <aside className="generatorSidebar">
@@ -89,8 +108,6 @@ function App() {
           onMakeUnique={makeGridsUnique}
           onSelectionChange={handleSelectionChange}
         />
-
-        <LogPanel logs={logs} />
       </section>
     </main>
   );

@@ -15,4 +15,6 @@
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
+
+  --log-panel-width: 320px;
 }

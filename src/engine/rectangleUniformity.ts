@@ -61,6 +61,28 @@ function calculateStats(
   };
 }
 
+function getMaximumAllowedDominoRun(gridSize: number): number {
+  switch (gridSize) {
+    case 5:
+      return 3;
+
+    case 10:
+      return 4;
+
+    case 15:
+      return 5;
+
+    case 20:
+      return 5;
+
+    case 25:
+      return 5;
+
+    default:
+      return 5;
+  }
+}
+
 function isVerticalDomino(region: RectangleRegion): boolean {
   return region.width === 1 && region.height === 2;
 }
@@ -147,14 +169,8 @@ function getMaximumVerticalRunOfHorizontalDominoes(
   return maximumRun;
 }
 
-function validateFiveByFiveDominoRepetition(
-  grid: RectangleGrid,
-): string | null {
-  if (grid.rows !== 5 || grid.cols !== 5) {
-    return null;
-  }
-
-  const maximumAllowedRun = 3;
+function validateDominoRepetition(grid: RectangleGrid): string | null {
+  const maximumAllowedRun = getMaximumAllowedDominoRun(grid.rows);
 
   const verticalDominoRun = getMaximumHorizontalRunOfVerticalDominoes(grid);
 
@@ -188,7 +204,7 @@ export function analyzeRectangleGridUniformity(
 
   const stats = calculateStats(grid, areas);
 
-  const dominoRepetitionReason = validateFiveByFiveDominoRepetition(grid);
+  const dominoRepetitionReason = validateDominoRepetition(grid);
 
   if (dominoRepetitionReason) {
     return {

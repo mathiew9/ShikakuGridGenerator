@@ -1,57 +1,94 @@
+/* =========================================================
+   PANNEAU DES LOGS
+   ========================================================= */
+
 .logPanel {
-  width: 320px;
-  min-width: 320px;
-  min-height: 0;
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  z-index: 20;
+
+  width: var(--log-panel-width);
 
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 
-  background: var(--panel-background);
+  background: var(--panel-background-dark);
+
   border: 1px solid var(--panel-border);
   border-radius: 14px;
 
+  overflow: hidden;
+
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 
-  transition:
-    width 0.2s ease,
-    min-width 0.2s ease;
+  transition: height 0.2s ease;
 }
 
-.logPanelCollapsed {
-  width: 48px;
-  min-width: 48px;
+.logTitle {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--text-primary);
+
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
-.logPanelHeader {
-  height: 42px;
-  flex-shrink: 0;
+.logPanelControls {
+  position: absolute;
+
+  top: 6px;
+  right: 6px;
+
+  z-index: 3;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
-  gap: 8px;
-  padding: 0 8px 0 14px;
-
-  border-bottom: 1px solid var(--panel-border);
+  gap: 5px;
 }
 
-.logPanelCollapsed .logPanelHeader {
-  justify-content: center;
-  padding: 0;
-  border-bottom: 0;
+.logPanelLabel {
+  padding: 4px 7px;
+
+  background: var(--panel-background);
+  color: var(--text-primary);
+
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+
+  pointer-events: none;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.logPanelHeader h2 {
-  margin: 0;
-  font-size: 0.95rem;
+/* =========================================================
+   ÉTATS
+   ========================================================= */
+
+.logPanelCollapsed {
+  height: 100%;
 }
+
+.logPanelExpanded {
+  height: calc(100vh - var(--layout-gap));
+}
+
+/* =========================================================
+   BOUTON OUVRIR / FERMER
+   ========================================================= */
 
 .logCollapseButton {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 
   display: inline-flex;
   align-items: center;
@@ -59,17 +96,24 @@
 
   padding: 0;
 
-  background: transparent;
+  background: var(--panel-background);
   color: var(--text-primary);
 
-  border: 1px solid #475569;
-  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
 
   cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .logCollapseButton:hover {
   background: #1e293b;
+}
+
+.logCollapseButton svg {
+  width: 10px;
+  height: 10px;
 }
 
 .logCollapseButton:focus-visible {
@@ -77,34 +121,72 @@
   outline-offset: 2px;
 }
 
+/* =========================================================
+   CONTENU
+   ========================================================= */
+
 .logContainer {
   flex: 1;
+
+  min-width: 0;
   min-height: 0;
 
   overflow-y: auto;
+  overscroll-behavior: contain;
 
-  padding: 9px 12px;
+  padding: 10px 38px 7px 8px;
 
   background: var(--panel-background-dark);
-  font-size: 0.78rem;
+
+  font-size: 0.72rem;
 }
+
+/*
+ * Quand le panneau est ouvert, le bouton n'occupe
+ * qu'une petite zone en haut à droite.
+ *
+ * Les lignes suivantes peuvent donc utiliser
+ * toute la largeur.
+ */
+
+.logPanelExpanded .logContainer {
+  padding: 9px 10px;
+  padding-right: 38px;
+}
+
+/* =========================================================
+   LIGNES
+   ========================================================= */
 
 .logLine {
   display: grid;
-  grid-template-columns: 70px minmax(0, 1fr);
-  gap: 8px;
 
-  padding: 2px 0;
+  grid-template-columns:
+    58px
+    minmax(0, 1fr);
+
+  gap: 6px;
+
+  padding: 1px 0;
+
+  line-height: 1.35;
 }
 
 .logTime {
   color: var(--text-muted);
+
+  white-space: nowrap;
 }
 
 .logMessage {
   min-width: 0;
+
   overflow-wrap: anywhere;
 }
+
+/* =========================================================
+   NIVEAUX
+   ========================================================= */
 
 .log-info {
   color: #cbd5f5;
@@ -126,6 +208,12 @@
   color: var(--text-secondary);
 }
 
+/* =========================================================
+   ÉTAT VIDE
+   ========================================================= */
+
 .logEmpty {
   color: var(--text-muted);
+
+  padding: 2px 0;
 }
